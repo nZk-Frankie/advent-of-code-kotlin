@@ -1,17 +1,33 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    val totalSnacks = ArrayList<Int>()
+
+    fun PartOne():Unit{
+        val input = readInput("Day01")
+        var sum=0;
+        var largest = 0;
+        for (i in input.indices){
+            if (!input[i].isEmpty())
+            {
+                sum += Integer.parseInt(input[i])
+                totalSnacks.add(sum)
+            }
+            else {
+                if (sum > largest)
+                {
+                    largest = sum
+                }
+                sum = 0;
+            }
+        }
+        println(largest)
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    fun partTwo():Unit{
+        totalSnacks.sortDescending()
+        var totalTopThree = totalSnacks[0]+totalSnacks[1]+totalSnacks[2]
+        println(totalTopThree)
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    PartOne()
+    partTwo()
 }
